@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_counter_app/counter_action.dart';
+
+import 'counter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,25 +33,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _onIncrement() {
     setState(() {
       _counter++;
     });
   }
 
-  void _dicrementCounter() {
+  void _onDecrement() {
     setState(() {
       _counter--;
     });
   }
 
-  void _incrementCounter2() {
+  void _onIncrement2() {
     setState(() {
       _counter += 2;
     });
   }
 
-  void _divideCounter() {
+  void _onDivide() {
     setState(() {
       _counter = _counter ~/ 2;
     });
@@ -66,52 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.deepPurpleAccent,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Center(
-                child: Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.plus_one),
-          ),
-          FloatingActionButton(
-            onPressed: _incrementCounter2,
-            tooltip: 'Increment by 2',
-            child: const Icon(Icons.exposure_plus_2),
-          ),
-          FloatingActionButton(
-            onPressed: _divideCounter,
-            tooltip: 'Divide',
-            child: const FaIcon(FontAwesomeIcons.divide),
-          ),
-          FloatingActionButton(
-            onPressed: _dicrementCounter,
-            tooltip: 'Dicrement',
-            child: const Icon(Icons.remove),
-          ),
-        ],
+      body: Center(child: Counter(value: _counter)),
+      floatingActionButton: CounterActions(
+        onIncrement: _onIncrement,
+        onDecrement: _onDecrement,
+        onIncrement2: _onIncrement2,
+        inDivide: _onDivide,
       ),
     );
   }
