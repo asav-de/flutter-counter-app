@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_counter_app/counter_action.dart';
+
+import 'counter_action.dart';
 
 import 'counter.dart';
 
