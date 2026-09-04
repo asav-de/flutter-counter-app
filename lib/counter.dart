@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Counter extends StatelessWidget {
-  const Counter({super.key, required this.value});
+  const Counter({super.key, required this.value, this.text = 'You have pushed the button this many times:'});
 
   final int value;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: .center,
       children: [
-        const Text('You have pushed the button this many times:'),
+        Text(text),
         Container(
           height: 100,
           width: 100,

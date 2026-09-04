@@ -18,27 +18,52 @@ class CounterActions extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        FloatingActionButton(
-          onPressed: onIncrement,
-          tooltip: 'Increment',
-          child: const Icon(Icons.plus_one),
-        ),
-        FloatingActionButton(
-          onPressed: onIncrement2,
-          tooltip: 'Increment by 2',
-          child: const Icon(Icons.exposure_plus_2),
-        ),
-        FloatingActionButton(
-          onPressed: inDivide,
-          tooltip: 'Divide',
-          child: const FaIcon(FontAwesomeIcons.divide),
-        ),
-        FloatingActionButton(
+        CastomButton(
+          onPressed: onIncrement, 
+          icon: Icon(Icons.plus_one)
+          ),
+        CastomButton(
           onPressed: onDecrement,
-          tooltip: 'Dicrement',
-          child: const Icon(Icons.remove),
+          icon: Icon(Icons.exposure_minus_1),
         ),
+        CastomButton(
+          onPressed: onIncrement2,
+          icon: Icon(Icons.exposure_plus_2),
+        ),
+        CastomButton(
+          onPressed: inDivide, 
+          icon: FaIcon(FontAwesomeIcons.divide)
+          ),
       ],
+    );
+  }
+}
+
+class CastomButton extends StatelessWidget {
+  const CastomButton({
+    super.key,
+    required this.onPressed,
+    this.tooltipText,
+    required this.icon,
+  });
+
+  final VoidCallback onPressed;
+  final String? tooltipText;
+  final Icon icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltipText ?? '',
+      waitDuration: Duration(seconds: 1),
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: const Color.fromARGB(255, 185, 92, 5),
+        ),
+        onPressed: onPressed,
+        child: icon,
+      ),
     );
   }
 }
